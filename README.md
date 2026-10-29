@@ -97,37 +97,7 @@ python -m unittest test -v
 ```
 
 * **Результат виконання тестів:**
-```text
-test_all_vowels ... ok
-test_digits_only ... ok
-test_empty_string ... ok
-test_english_vowels ... ok
-test_no_vowels ... ok
-test_ukrainian_letters ... ok
-test_rectangle_angles ... ok
-test_square_angles ... ok
-test_triangle_angles ... ok
-test_length_is_correct ... ok
-test_negative_length_raises ... ok
-test_unknown_type_raises ... ok
-test_zero_length_raises ... ok
-test_all_figure_types_subtest ... ok
-test_figure_lengths_subtest ... ok
-test_rectangle_type ... ok
-test_square_type ... ok
-test_triangle_type ... ok
-test_ask_user_number_empty ... ok
-test_ask_user_number_returns_value ... ok
-test_assert_negative_raises ... ok
-test_assert_positive_number_ok ... ok
-test_assert_zero_raises ... ok
-test_create_name_empty_raises ... ok
-test_create_name_ok ... ok
-
-Ran 25 tests in 0.003s
-
-OK
-```
+![alt text](image.png)
 
 ---
 ### Висновок:
