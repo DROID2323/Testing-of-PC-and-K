@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "lab-07-testing"
+version = "0.1.0"
+description = "Лабораторна робота №7 — Тестування в Python"
+authors = ["Your Name <you@example.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-cov = "^5.0"
+coverage = "^7.0"
+
+[tool.pytest.ini_options]
+testpaths = ["example/testing"]
+python_files = ["test_*.py"]
+
+[tool.coverage.run]
+branch = true
+source = ["example/testing"]
+
+[tool.coverage.report]
+omit = [
+    "*/test_*.py",
+    "*/__init__.py"
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
