@@ -1,39 +1,82 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Python application
+name: Lab 08 - GitHub Actions
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  
+  # ★ Ручний запуск з параметром
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Введіть ім'я"
+        required: false
+        default: "Executer"
+
+  # ★ Запуск по розкладу — щопонеділка о 10:00
+  schedule:
+    - cron: '0 10 * * 1'
 
 permissions:
   contents: read
 
 jobs:
+  # ★ Перше завдання — перевірка коду
   build:
-
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        pip install flake8 pytest pytest-cov coverage
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
     - name: Lint with flake8
       run: |
-        # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
     - name: Test with pytest
       run: |
-        pytest
+        pytest 01_general_and_unittest/test.py -v
+
+    - name: Generate Coverage Report
+      run: |
+        cd 01_general_and_unittest
+        coverage run -m pytest test.py -v
+        coverage report -m
+
+    # ★ Крок з умовою — виконується тільки якщо передано не дефолтне ім'я
+    - name: Send greeting
+      run: echo "Hello ${{ github.event.inputs.name }}!"
+      if: github.event.inputs.name != 'Executer' && github.event.inputs.name != ''
+
+    # ★ Запуск Python файлу з попередньої лабораторної
+    - name: Run Python app
+      run: |
+        python 01_general_and_unittest/app.py || true
+
+  # ★ Друге завдання — інформація про середовище
+  info:
+    name: Print Environment Info
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Print Python version
+      run: python --version
+
+    - name: Print OS info
+      run: uname -a
+
+    - name: Print working directory
+      run: pwd
