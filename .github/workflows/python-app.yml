@@ -1,4 +1,4 @@
-name: Lab 08 - GitHub Actions
+name: Lab 2 - GitHub Actions
 
 on:
   push:
