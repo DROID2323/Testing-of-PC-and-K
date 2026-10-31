@@ -20,7 +20,7 @@ class Figure:
     @property
     def get_angles(self) -> int:
         if self._figure_type == "квадрат":
-            return 5
+            return 4
         elif self._figure_type == "прямокутник":
             return 4
         else:
