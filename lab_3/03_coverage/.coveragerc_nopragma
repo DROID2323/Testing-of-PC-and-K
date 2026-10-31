@@ -1,0 +1,14 @@
+# Той самий конфіг, але БЕЗ виключення pragma: no cover (лише для порівняння у звіті)
+[run]
+source = .
+branch = true
+
+[report]
+omit =
+    test_*.py
+    */tests/*
+    */__init__.py
+    */.venv/*
+    make_report.py
+exclude_lines =
+    NEVER_MATCHES_ANYTHING_xyz
