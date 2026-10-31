@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "lab-2-pytest"
+version = "0.1.0"
+description = "Лабораторна робота — Тестування з бібліотекою pytest"
+authors = ["Your Name <you@example.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+
+[tool.pytest.ini_options]
+testpaths = ["02_pytest"]
+python_files = ["test_*.py"]
+markers = [
+    "unit: швидкі юніт-тести",
+    "slow: повільні тести",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
