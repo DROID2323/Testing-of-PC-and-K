@@ -238,7 +238,7 @@ python -m pytest test_before.py --cov=app --cov=validation --cov-branch --cov-fa
     path: 03_coverage/coverage.xml
 ```
 
-<!-- ![alt text](screenshots/13_ci.png) -->
+![alt text](screenshots/13_ci.png)
 
 * **Що не комітиться** (файл `.gitignore`):
 ```text
